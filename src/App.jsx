@@ -3,12 +3,29 @@ import React from "react";
 import { FiSettings } from "react-icons/fi";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "./App.css";
-
-import { Navbar, Sidebar } from './components';
-import { Area, Bar, Calendar, ColorMapping, ColorPicker, Customers, ECommerce, Editor, Employees, Financial, Kanban, Line, Orders, Pie, Pyramid, Stacked } from './pages';
+import { Navbar, Sidebar } from "./components";
+import {
+  Area,
+  Bar,
+  Calendar,
+  ColorMapping,
+  ColorPicker,
+  Customers,
+  ECommerce,
+  Editor,
+  Employees,
+  Financial,
+  Kanban,
+  Line,
+  Orders,
+  Pie,
+  Pyramid,
+  Stacked,
+} from "./pages";
+import { useStateContext } from "./context/ContextProvider";
 
 const App = () => {
-  const activeMenu = true;
+  const { activeMenu } = useStateContext();
 
   return (
     <div>
@@ -19,13 +36,14 @@ const App = () => {
               <button
                 type="button"
                 className="text-3xl p-3 hover:drop-shadow-xl hover:bg-light-gray text-white"
-                style={{ background: "blue", borderRadius: "50%" }}>
+                style={{ background: "blue", borderRadius: "50%" }}
+              >
                 <FiSettings />
               </button>
             </TooltipComponent>
           </div>
-          {activeMenu 
-          ? (<div className="sidebar w-72 fixed dark:bg-secondary-dark-bg bg-white">
+          {activeMenu ? (
+            <div className="w-72 fixed sidebar dark:bg-secondary-dark-bg bg-white ">
               <Sidebar />
             </div>
           ) : (
@@ -33,7 +51,11 @@ const App = () => {
               <Sidebar />
             </div>
           )}
-          <div className={`ark:bg-main-bg bg-main-bg min-h-screen w-full ${activeMenu ? 'md:ml-72' : 'flex-2'}`}>
+          <div
+            className={`ark:bg-main-bg bg-main-bg min-h-screen w-full ${
+              activeMenu ? "md:ml-72" : "flex-2"
+            }`}
+          >
             <div className="fixed md:static bg-main-bg dark:bg-main-dark-bg navbar w-full">
               <Navbar />
             </div>
@@ -55,15 +77,14 @@ const App = () => {
 
               <Route path="/line" element={<Line />} />
               <Route path="/area" element={<Area />} />
-              <Route path="/bar" element={<Bar />}/>
-              <Route path="/pie" element={<Pie />}/>
+              <Route path="/bar" element={<Bar />} />
+              <Route path="/pie" element={<Pie />} />
               <Route path="/financial" element={<Financial />} />
               <Route path="/color-mapping" element={<ColorMapping />} />
               <Route path="/pyramid" element={<Pyramid />} />
               <Route path="/stacked" element={<Stacked />} />
             </Routes>
           </div>
-
         </div>
       </BrowserRouter>
     </div>
