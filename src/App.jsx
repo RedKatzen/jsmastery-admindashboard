@@ -1,7 +1,7 @@
 import { TooltipComponent } from "@syncfusion/ej2-react-popups";
 import React from "react";
 import { FiSettings } from "react-icons/fi";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import "./App.css";
 import { Navbar, Sidebar } from "./components";
 import {
@@ -29,7 +29,6 @@ const App = () => {
 
   return (
     <div>
-      <BrowserRouter>
         <div className="flex relative dark:bg-main-dark-bg">
           <div className="fixed right-4 bottom-4" style={{ zIndex: "1000" }}>
             <TooltipComponent content="Settings" position="Top">
@@ -67,7 +66,7 @@ const App = () => {
 
                 <Route path="/orders" element={<Orders />} />
                 <Route path="/employees" element={<Employees />} />
-                <Route path="/customers " element={<Customers />} />
+                <Route path="/customers" element={<Customers />} />
 
                 <Route path="/kanban" element={<Kanban />} />
                 <Route path="/editor " element={<Editor />} />
@@ -86,7 +85,6 @@ const App = () => {
             </div>
           </div>
         </div>
-      </BrowserRouter>
     </div>
   );
 };
