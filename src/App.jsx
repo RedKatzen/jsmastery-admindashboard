@@ -3,7 +3,7 @@ import React from "react";
 import { FiSettings } from "react-icons/fi";
 import { Route, Routes } from "react-router-dom";
 import "./App.css";
-import { Navbar, Sidebar } from "./components";
+import { Navbar, Sidebar, ThemeSettings } from "./components";
 import {
   Area,
   Bar,
@@ -25,7 +25,7 @@ import {
 import { useStateContext } from "./context/ContextProvider";
 
 const App = () => {
-  const { activeMenu } = useStateContext();
+  const { activeMenu, themeSettings, setThemeSettings } = useStateContext();
 
   return (
     <div>
@@ -35,6 +35,7 @@ const App = () => {
               <button
                 type="button"
                 className="text-3xl p-3 hover:drop-shadow-xl hover:bg-light-gray text-white"
+                onClick={() => setThemeSettings(true)}
                 style={{ background: "blue", borderRadius: "50%" }}
               >
                 <FiSettings />
@@ -60,6 +61,8 @@ const App = () => {
             </div>
 
             <div>
+            {themeSettings && <ThemeSettings />}
+
               <Routes>
                 <Route path="/" element={<ECommerce />} />
                 <Route path="/ecommerce" element={<ECommerce />} />
